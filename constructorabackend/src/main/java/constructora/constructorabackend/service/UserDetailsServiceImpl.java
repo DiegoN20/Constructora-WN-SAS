@@ -1,7 +1,7 @@
-package contructora.constructorabackend.service;
+package constructora.constructorabackend.service;
 
-import contructora.constructorabackend.model.UserModel;
-import contructora.constructorabackend.repository.IUserRepository;
+import constructora.constructorabackend.model.UserModel;
+import constructora.constructorabackend.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,6 +1,6 @@
-package contructora.constructorabackend.repository;
+package constructora.constructorabackend.repository;
 
-import contructora.constructorabackend.model.ProductModel;
+import constructora.constructorabackend.model.ProductModel;
 
 import java.util.List;
 

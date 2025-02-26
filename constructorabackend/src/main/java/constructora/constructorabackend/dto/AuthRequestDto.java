@@ -1,4 +1,4 @@
-package contructora.constructorabackend.dto;
+package constructora.constructorabackend.dto;
 
 import lombok.Data;
 

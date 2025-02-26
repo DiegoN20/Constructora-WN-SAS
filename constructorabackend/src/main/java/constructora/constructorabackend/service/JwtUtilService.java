@@ -1,8 +1,7 @@
-package contructora.constructorabackend.service;
+package constructora.constructorabackend.service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
@@ -17,9 +16,9 @@ public class JwtUtilService {
     private static final long JWT_TIME_VALIDITY = 1000 * 60  * 15;
     private static final long JWT_TIME_REFRESH_VALIDATE = 1000 * 60  * 60 * 24;
 
-    public String generateToken(UserDetails userDetails, String role) {
+    public String generateToken(UserDetails userDetails, String rol) {
         var claims = new HashMap<String, Object>();
-        claims.put("role", role);
+        claims.put("rol", rol);
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
@@ -29,9 +28,9 @@ public class JwtUtilService {
                 .compact();
     }
 
-    public String generateRefreshToken(UserDetails userDetails, String role) {
+    public String generateRefreshToken(UserDetails userDetails, String rol) {
         var claims = new HashMap<String, Object>();
-        claims.put("role", role);
+        claims.put("rol", rol);
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
@@ -47,7 +46,7 @@ public class JwtUtilService {
     }
 
     private <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-        Claims claims = Jwts.parserBuilder().setSigningKey(Keys.hmacShaKeyFor(JWT_SECRET_KEY.getBytes())).build().parseClaimsJws(token).getBody();
+        Claims claims = Jwts.parser().setSigningKey(JWT_SECRET_KEY).build().parseClaimsJws(token).getBody();
         return claimsResolver.apply(claims);
     }
 

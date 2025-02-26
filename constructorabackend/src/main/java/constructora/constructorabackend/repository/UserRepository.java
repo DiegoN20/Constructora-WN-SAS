@@ -1,6 +1,6 @@
-package contructora.constructorabackend.repository;
+package constructora.constructorabackend.repository;
 
-import contructora.constructorabackend.model.UserModel;
+import constructora.constructorabackend.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

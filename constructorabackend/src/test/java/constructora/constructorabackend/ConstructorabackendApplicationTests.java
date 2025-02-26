@@ -1,4 +1,4 @@
-package contructora.constructorabackend;
+package constructora.constructorabackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

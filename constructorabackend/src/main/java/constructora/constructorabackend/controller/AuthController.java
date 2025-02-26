@@ -1,10 +1,10 @@
-package contructora.constructorabackend.controller;
+package constructora.constructorabackend.controller;
 
-import contructora.constructorabackend.dto.AuthRequestDto;
-import contructora.constructorabackend.dto.AuthResponseDto;
-import contructora.constructorabackend.model.UserModel;
-import contructora.constructorabackend.repository.UserRepository;
-import contructora.constructorabackend.service.JwtUtilService;
+import constructora.constructorabackend.dto.AuthRequestDto;
+import constructora.constructorabackend.dto.AuthResponseDto;
+import constructora.constructorabackend.model.UserModel;
+import constructora.constructorabackend.repository.UserRepository;
+import constructora.constructorabackend.service.JwtUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

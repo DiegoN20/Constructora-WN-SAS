@@ -1,4 +1,4 @@
-package contructora.constructorabackend.model;
+package constructora.constructorabackend.model;
 
 import lombok.Data;
 

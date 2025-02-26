@@ -1,4 +1,4 @@
-package contructora.constructorabackend.filter;
+package constructora.constructorabackend.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -12,7 +12,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import contructora.constructorabackend.service.JwtUtilService;
+import constructora.constructorabackend.service.JwtUtilService;
 import java.io.IOException;
 
 @Component
@@ -44,6 +44,5 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
-
     }
 }

@@ -1,10 +1,10 @@
-package contructora.constructorabackend.repository;
+package constructora.constructorabackend.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import contructora.constructorabackend.model.ProductModel;
+import constructora.constructorabackend.model.ProductModel;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class ProductRepository implements  IProductRepository{
 
     @Override
     public List<ProductModel> findAll() {
-        String SQL = "SELECT * FROM products";
+        String SQL = "SELECT * FROM proyectos";
         return jdbcTemplate.query(SQL, BeanPropertyRowMapper.newInstance(ProductModel.class));
     }
 

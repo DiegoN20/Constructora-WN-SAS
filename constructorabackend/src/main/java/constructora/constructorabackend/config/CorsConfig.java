@@ -1,4 +1,4 @@
-package contructora.constructorabackend.config;
+package constructora.constructorabackend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

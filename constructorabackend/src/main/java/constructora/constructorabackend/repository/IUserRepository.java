@@ -1,6 +1,6 @@
-package contructora.constructorabackend.repository;
+package constructora.constructorabackend.repository;
 
-import contructora.constructorabackend.model.UserModel;
+import constructora.constructorabackend.model.UserModel;
 
 public interface IUserRepository {
     public UserModel findByCorreo(String user);
