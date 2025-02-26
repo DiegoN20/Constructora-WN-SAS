@@ -1,0 +1,35 @@
+.header {
+    background: linear-gradient(to bottom right, #333e51, #121a2a);
+    position: relative;
+    width: 100%;
+    border-radius: 1rem;
+    transition: transform 0.3s;
+}
+
+.header-container {
+    max-width: 7xl;
+    padding: 1rem 1rem;
+    margin: 0 auto;
+}
+
+.header-title {
+    font-size: 1.875rem;
+    font-weight: bold;
+    letter-spacing: -0.015625rem;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    height: 5rem;
+    width: 5rem;
+}
+
+.header-text {
+    background: linear-gradient(to bottom right, #ffffff, rgba(255, 255, 255, 0.5), transparent);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 3.75rem;
+    margin-left: 0.5rem;
+}

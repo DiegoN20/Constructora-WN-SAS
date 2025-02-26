@@ -1,0 +1,18 @@
+/* Ajusta los márgenes y el padding del header */
+app-header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+  
+  /* Ajusta los márgenes y el padding del contenedor que incluye el router-outlet */
+div.mt-12 {
+    margin-top: 0;
+    padding-top: 0;
+}
+  
+  /* Ajusta los márgenes y el padding del footer */
+app-footer {
+    margin-top: 0;
+    padding-top: 0;
+}
+  

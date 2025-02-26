@@ -1,0 +1,161 @@
+/* Estilos generales del sidebar */
+.sidebar {
+    background: linear-gradient(to bottom right, #4a5568, #1a202c);
+    transform: translateX(-20rem);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    margin: 1rem 0 1rem 1rem;
+    height: calc(100vh - 2rem);
+    width: 18rem;
+    border-radius: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.sidebar:hover {
+    transform: translateX(0);
+}
+
+/* Estilos del menú */
+.menu {
+    background-color: rgba(31, 41, 55, 0.1);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+/* Título del dashboard */
+.dashboard-title {
+    font-weight: bold;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    background: linear-gradient(to bottom right, white, rgba(255, 255, 255, 0.5), transparent);
+    background-clip: text;
+    color: transparent;
+}
+
+.red-dot {
+    color: #f87171;
+}
+
+/* Texto de bienvenida */
+.welcome-text {
+    color: #94a3b8;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Perfil del usuario */
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding: 0.75rem 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.15s ease;
+}
+
+.user-profile:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-image img {
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+}
+
+.user-info {
+    text-align: center;
+}
+
+.user-name {
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+
+.user-profile:hover .user-name {
+    color: #f87171;
+}
+
+.user-role {
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+/* Divisores */
+.divider {
+    border-color: #374151;
+    margin: 0.5rem 0;
+}
+
+/* Enlaces del menú */
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1.25rem 0;
+}
+
+.menu-link {
+    padding: 0.75rem 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.15s ease;
+}
+
+.menu-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.link-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.link-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke: currentColor;
+    transition: color 0.15s ease;
+}
+
+.menu-link:hover .link-icon svg {
+    color: #f87171;
+}
+
+.link-text {
+    flex-grow: 1;
+}
+
+.link-title {
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: #e2e8f0;
+    transition: color 0.15s ease;
+}
+
+.menu-link:hover .link-title {
+    color: #f87171;
+}
+
+.link-description {
+    color: #94a3b8;
+    font-size: 0.875rem;
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .link-description {
+        display: block;
+    }
+}
+
+/* Enlace activo */
+.active-link {
+    background: linear-gradient(to top right, #dc2626, #f87171);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}

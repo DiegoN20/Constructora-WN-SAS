@@ -1,0 +1,49 @@
+<!-- component -->
+<div class="bg-gray-700 absolute top-0 left-0 bg-gradient-to-b from-gray-700 via-red-900 to-gray-700 bottom-0 leading-5 h-full w-full overflow-hidden flex items-center justify-center h-screen">
+    <div class="flex justify-center self-center z-10">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+            <div class="flex justify-center space-x-2 mb-6">
+                <div class="flex justify-center self-center mb-4">
+                    <img src="Logo WN.png" alt="Descripción de la imagen" class="h-40 w-40">
+                </div>
+            </div>
+            <div>
+                <h1 class="flex justify-center self-center text-xl font-semibold">Cambiar la contraseña</h1>
+            </div>
+            <p class="text-sm text-gray-600 mb-6">Actualice la contraseña para mejorar la seguridad de la cuenta.</p>
+            <form id="changePasswordForm" class="space-y-4">
+                <div>
+                    <label for="newPassword" class="text-sm font-medium text-gray-700 block mb-2">Nueva contraseña *</label>
+                    <input type="password" id="newPassword" class="password-input form-input block w-full border border-gray-300 rounded-md shadow-sm" required>
+                </div>
+                <div>
+                    <label for="confirmPassword" class="text-sm font-medium text-gray-700 block mb-2">Confirmar nueva contraseña *</label>
+                    <input type="password" id="confirmPassword" class="password-input form-input block border w-full border-gray-300 rounded-md shadow-sm" required>
+                    <button type="button" onclick="clearConfirmPassword()" class="text-xs text-blue-600 hover:underline mt-1">Clear</button>
+                </div>
+                <div id="passwordCriteria" class="text-sm space-y-2">
+                    <p class="text-red-500">Contraseña débil. Debe contener:</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Al menos 1 mayúscula</li>
+                        <li>Al menos 1 numero</li>
+                        <li>Al menos 8 caracteres</li>
+                    </ul>
+                </div>
+                <div class="flex justify-between">
+                    <button type="button" onclick="discardChanges()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring focus:border-blue-300">Desechar</button>
+                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300">Aplicar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-transparent absolute w-full bottom-0 left-0 z-30">
+    <div class="container p-5 mx-auto flex items-center justify-between"></div>
+</footer>
+
+<svg class="absolute bottom-0 left-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#1f2937" fill-opacity="1"
+        d="M0,0L40,42.7C80,85,160,171,240,197.3C320,224,400,192,480,154.7C560,117,640,75,720,74.7C800,75,880,117,960,154.7C1040,192,1120,224,1200,213.3C1280,203,1360,149,1400,122.7L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z">
+    </path>
+</svg>
