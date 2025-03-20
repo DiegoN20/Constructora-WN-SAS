@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import path from 'path';
 import { authGuard } from './core/guards/auth.guard';
 import { authenticatedGuard } from './core/guards/authenticated.guard';
 
@@ -47,8 +46,14 @@ export const routes: Routes = [
         canActivate: [authenticatedGuard]
     },
     {
-        path: 'contrasena',
-        loadComponent: () => import('./business/authentication/contrasena/contrasena.component')
+        path: 'sendemail',
+        loadComponent: ()=> import ('./business/authentication/changepassword/send-email/send-email.component'),
+        canActivate: [authenticatedGuard]
+    },
+    {
+        path: 'change-password/:tokenPassword',
+        loadComponent: ()=> import ('./business/authentication/changepassword/change-password/change-password.component'),
+        canActivate: [authenticatedGuard]
     },
     {
         path: '**',

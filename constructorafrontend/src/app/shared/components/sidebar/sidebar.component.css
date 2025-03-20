@@ -159,3 +159,14 @@
     background: linear-gradient(to top right, #dc2626, #f87171);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
+
+
+/*-----------*/
+a[routerLink="/logout"] {
+    color: white; /* Color de texto por defecto */
+    transition: color 0.3s ease; /* Transición suave */
+}
+
+a[routerLink="/logout"]:hover {
+    color: red; /* Cambia a rojo al pasar el cursor */
+}

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { response } from 'express';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -20,7 +19,7 @@ export class AuthService {
     return this.httpClient.post<any>(this.LOGIN_URL, {user, password}).pipe(
       tap(response => {
         if(response.token){
-          console.log(response.token);
+          
           this.setToken(response.token);
           this.setRefreshToken(response.refreshToken);
           this.autoRefreshToken();
