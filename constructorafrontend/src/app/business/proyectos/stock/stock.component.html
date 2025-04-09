@@ -1,0 +1,80 @@
+<div class="antialiased bg-black w-full min-h-screen text-slate-300 relative py-1">
+    <div class="grid grid-cols-10 mx-auto gap-2 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-14 max-w-7xl  px-2 antialiased bg-black w-full min-h-screen text-slate-300 relative py-1">
+        <div id="content" class="bg-gradient-to-br from-gray-700 to-gray-900 col-span-12 rounded-lg p-6">
+            <div id="last-users">
+                <h1 class="font-bold px-1 py-1 uppercase">Stock Proyecto </h1>
+                <div class="flex items-center space-x-4 px-1 py-2 rounded w-full">
+                    <div class="relative flex-1 max-w-full">
+                        <input 
+                            class="w-full border-gray-300 border rounded-lg px-4 py-2 pr-12 focus:outline-none" 
+                            type="search" 
+                            name="search" 
+                            placeholder="Search..."
+                        />
+                        <button 
+                            type="submit" 
+                            class="absolute right-1 top-1 bottom-1 bg-red-600 rounded-lg px-3 flex items-center justify-center text-white">
+                            <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.966 56.966" width="512px" height="512px">
+                                <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="overflow-x-scroll">
+                    <table class="w-full whitespace-nowrap">
+                        <thead class="bg-black/60">
+                            <th class="text-left py-3 px-2 rounded-l-lg">Id</th>
+                            <th class="text-left py-3 px-2">Proyecto</th>
+                            <th class="text-left py-3 px-2">Insumo</th>
+                            <th class="text-left py-3 px-2">Cantidad Total</th>
+                            <th class="text-left py-3 px-2">Cantidad Invertida</th>
+                            <th class="text-left py-3 px-2 rounded-r-lg">Cantidad Restante</th>
+                        </thead>
+                        <tr *ngFor="let stock of paginatedStocks" class="border-b border-gray-700">
+                            
+                            <td class="py-3 px-2">{{ stock.idStock }}</td>
+                            <td class="py-3 px-2">{{ stock.nombreProyecto }}</td>
+                            <td class="py-3 px-2">{{ stock.nombreInsumo }}</td>
+                            <td class="py-3 px-2">{{ stock.cantidadTotal }}</td>
+                            <td class="py-3 px-2">{{ stock.cantidadInvertida }}</td>
+                            <td class="py-3 px-2">{{ stock.cantidadRestante }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="flex justify-between items-center px-4 py-3">
+                <div *ngIf="stocks.length > 0; else noStocks">
+                    Mostrando <b>{{ (currentPage - 1) * pageSize + 1 }}</b> - 
+                    <b *ngIf="stocks.length > 1">{{ Math.min(currentPage * pageSize, stocks.length) }}</b>
+                    <b *ngIf="stocks.length === 1">{{ stocks.length }}</b> de 
+                    <b>{{ stocks.length }}</b>
+                </div>
+                <ng-template #noStocks>
+                <p>No hay stocks disponibles.</p>
+                </ng-template>
+                <div class="flex space-x-1">
+                    <div *ngIf="stocks.length > 0; else noStocks">
+                        <div class="flex space-x-1">
+                            <button class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease"
+                                [disabled]="currentPage === 1"
+                                (click)="changePage(currentPage - 1)"
+                            >Anterior</button>
+                            <button class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-white bg-slate-800 border border-slate-800 rounded hover:bg-slate-600 hover:border-slate-600 transition duration-200 ease"
+                                *ngFor="let page of [].constructor(Math.ceil(stocks.length / pageSize)); let i = index"
+                                (click)="changePage(i + 1)"
+                                [class.active]="currentPage === i + 1"
+                            >{{ i + 1 }}</button>
+                            <button class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease"
+                                [disabled]="currentPage === Math.ceil(stocks.length / pageSize)"
+                                (click)="changePage(currentPage + 1)"
+                            >Siguiente</button>
+                        </div>
+                    </div>
+                    <ng-template #noStocks>
+                        <p class="text-center">No hay Stocks disponibles.</p>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
