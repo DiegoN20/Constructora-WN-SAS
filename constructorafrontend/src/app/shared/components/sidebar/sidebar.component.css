@@ -170,3 +170,4 @@ a[routerLink="/logout"] {
 a[routerLink="/logout"]:hover {
     color: red; /* Cambia a rojo al pasar el cursor */
 }
+

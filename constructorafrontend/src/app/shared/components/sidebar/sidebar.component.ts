@@ -10,10 +10,13 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+  user: any;
 
-  constructor(private authService: AuthService){
-  
-    }
+  constructor(private authService: AuthService){}
+
+  ngOnInit(): void {
+    this.user = this.authService.getUserData(); // Obtenemos datos como nombre y rol
+  }
   
     logout(): void{
       this.authService.logout()

@@ -35,7 +35,7 @@ export default class LoginComponent {
         const token = response.token;
         const payload = JSON.parse(atob(token.split('.')[1]));
         const role = payload.rol;
-        if(role === 'contratista') {
+        if(role === 'Contratista') {
           this.router.navigate(['/dashboard'])
         }else {
           this.router.navigate(['/login'])

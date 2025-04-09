@@ -40,11 +40,20 @@ public class AsignacionMaestroService implements IAsignacionMaestroService{
     }
 
     @Override
+    public List<AsignacionMaestroModel> getAsignacionesByProyecto(Integer idProyecto) {
+        return iAsignacionMaestroRepository.findByProyectoId(idProyecto);
+    }
+
+    @Override
+    public List<AsignacionMaestroModel> getAsignacionesByMaestro(Integer idMaestro) {
+        return iAsignacionMaestroRepository.findByMaestroId(idMaestro);
+    }
+
+    @Override
     public void deleteAsignacionMaestro(Integer idMaestro, Integer idProyecto) {
         AsignacionMaestroId id = new AsignacionMaestroId();
         id.setIdMaestro(idMaestro);
         id.setIdProyecto(idProyecto);
-
         iAsignacionMaestroRepository.deleteById(id);
     }
 

@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +16,7 @@ public class AvancePorPisoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_avance_Por_Piso")
-    private Integer idAvancePorPiso;
+    private int idAvancePorPiso;
 
     @ManyToOne
     @JoinColumn(name = "proyectos_id_proyectos", nullable = false)
@@ -26,14 +27,94 @@ public class AvancePorPisoModel {
     private InsumoModel insumo;
 
     @Column(name = "numero_piso", nullable = false)
-    private Integer numeroPiso;
+    private int numeroPiso;
 
     @Column(name = "cantidad_comprada", nullable = false)
-    private Integer cantidadComprada;
+    private int cantidadComprada;
 
     @Column(name = "costo_insumos", nullable = false)
-    private Integer costoInsumos;
+    private int costoInsumos;
 
     @Column(name = "fecha_compra", nullable = false)
-    private LocalDateTime fechaCompra;
+    private LocalDate fechaCompra;
+
+    @Column(name = "cantidad_usada", nullable = false)
+    private int cantidadUsada;
+
+    public Integer getIdAvancePorPiso() {
+        return idAvancePorPiso;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AvancePorPisoModel that = (AvancePorPisoModel) o;
+        return Objects.equals(idAvancePorPiso, that.idAvancePorPiso);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idAvancePorPiso);
+    }
+
+    public void setIdAvancePorPiso(int idAvancePorPiso) {
+        this.idAvancePorPiso = idAvancePorPiso;
+    }
+
+    public ProyectModel getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(ProyectModel proyecto) {
+        this.proyecto = proyecto;
+    }
+
+    public InsumoModel getInsumo() {
+        return insumo;
+    }
+
+    public void setInsumo(InsumoModel insumo) {
+        this.insumo = insumo;
+    }
+
+    public int getNumeroPiso() {
+        return numeroPiso;
+    }
+
+    public void setNumeroPiso(int numeroPiso) {
+        this.numeroPiso = numeroPiso;
+    }
+
+    public int getCantidadComprada() {
+        return cantidadComprada;
+    }
+
+    public void setCantidadComprada(int cantidadComprada) {
+        this.cantidadComprada = cantidadComprada;
+    }
+
+    public int getCostoInsumos() {
+        return costoInsumos;
+    }
+
+    public void setCostoInsumos(int costoInsumos) {
+        this.costoInsumos = costoInsumos;
+    }
+
+    public LocalDate getFechaCompra() {
+        return fechaCompra;
+    }
+
+    public void setFechaCompra(LocalDate fechaCompra) {
+        this.fechaCompra = fechaCompra;
+    }
+
+    public int getCantidadUsada() {
+        return cantidadUsada;
+    }
+
+    public void setCantidadUsada(int cantidadUsada) {
+        this.cantidadUsada = cantidadUsada;
+    }
 }

@@ -15,9 +15,7 @@ public class ProveedorService implements IProveedorService{
     private IProveedorRepository iProveedorRepository;
 
     @Override
-    public ProveedorModel saveProveedor(ProveedorModel proveedorModel) {
-        return iProveedorRepository.save(proveedorModel);
-    }
+    public ProveedorModel saveProveedor(ProveedorModel proveedorModel) { return iProveedorRepository.save(proveedorModel); }
 
     @Override
     public ProveedorModel updateProveedor(ProveedorModel proveedorModel) {

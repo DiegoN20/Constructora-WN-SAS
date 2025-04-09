@@ -11,11 +11,15 @@ import java.util.Optional;
 
 @Service
 public class ProyectService implements IProyectService {
+
     @Autowired
     private IProyectRepository iProyectRepository;
 
     @Override
     public ProyectModel saveProyecto(ProyectModel proyectModel) {
+        if (proyectModel.getUsuario() == null || proyectModel.getUsuario().getId_usuarios() == null) {
+            throw new IllegalArgumentException("El usuario asociado no puede ser nulo.");
+        }
         return iProyectRepository.save(proyectModel);
     }
 

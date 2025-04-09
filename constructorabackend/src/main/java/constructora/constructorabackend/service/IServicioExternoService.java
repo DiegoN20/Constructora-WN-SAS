@@ -14,6 +14,9 @@ public interface IServicioExternoService {
 
     Optional<ServicioExternoModel> getServicioExternoById(Integer idProveedor, Integer idProyecto);
 
+    List<ServicioExternoModel> getServicioExternoByProyecto(Integer idProyecto);
+
+    List<ServicioExternoModel> getServicioExternoByProveedor(Integer idProveedor);
 
     void deleteServicioExterno(Integer idMaestro, Integer idProyecto);
 }

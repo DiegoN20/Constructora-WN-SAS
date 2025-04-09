@@ -40,6 +40,16 @@ public class ServicioExternoService implements IServicioExternoService{
     }
 
     @Override
+    public List<ServicioExternoModel> getServicioExternoByProyecto(Integer idProyecto) {
+        return iServicioExternoRepository.findByProyectoId(idProyecto);
+    }
+
+    @Override
+    public List<ServicioExternoModel> getServicioExternoByProveedor(Integer idProveedor) {
+        return iServicioExternoRepository.findByProveedorId(idProveedor);
+    }
+
+    @Override
     public void deleteServicioExterno(Integer idProveedor, Integer idProyecto) {
         ServicioExternoId id = new ServicioExternoId();
         id.setProveedoresIdProveedores(idProveedor);

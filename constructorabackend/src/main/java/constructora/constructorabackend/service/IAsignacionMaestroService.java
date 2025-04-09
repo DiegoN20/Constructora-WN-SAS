@@ -14,6 +14,9 @@ public interface IAsignacionMaestroService {
 
     Optional<AsignacionMaestroModel> getAsignacionMaestroById(Integer idMaestro, Integer idProyecto);
 
+    List<AsignacionMaestroModel> getAsignacionesByProyecto(Integer idProyecto);
+
+    List<AsignacionMaestroModel> getAsignacionesByMaestro(Integer idMaestro);
 
     void deleteAsignacionMaestro(Integer idMaestro, Integer idProyecto);
 }

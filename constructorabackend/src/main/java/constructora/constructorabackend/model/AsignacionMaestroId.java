@@ -8,6 +8,9 @@ import java.util.Objects;
 @Embeddable
 public class AsignacionMaestroId implements Serializable {
 
+    public AsignacionMaestroId() {
+    }
+
     @Column(name = "id_maestro")
     private Integer idMaestro;
 

@@ -15,13 +15,13 @@ public class MaestroService implements IMaestroService{
     private IMaestroRepository iMaestroRepository;
 
     @Override
-    public MaestroModel saveMaestro(MaestroModel MaestroModel) {
-        return iMaestroRepository.save(MaestroModel);
+    public MaestroModel saveMaestro(MaestroModel maestroModel) {
+        return iMaestroRepository.save(maestroModel);
     }
 
     @Override
-    public MaestroModel updateMaestro(MaestroModel MaestroModel) {
-        return iMaestroRepository.save(MaestroModel);
+    public MaestroModel updateMaestro(MaestroModel maestroModel) {
+        return iMaestroRepository.save(maestroModel);
     }
 
     @Override
@@ -38,4 +38,10 @@ public class MaestroService implements IMaestroService{
     public void deleteMaestro(Integer id) {
         iMaestroRepository.deleteById(id);
     }
+
+    @Override
+    public List<MaestroModel> getMaestrosDisponibles() {
+        return iMaestroRepository.findByEstadoMaestro(MaestroModel.EstadoMaestro.Disponible); // Utiliza el repositorio para buscar por estado
+    }
+
 }

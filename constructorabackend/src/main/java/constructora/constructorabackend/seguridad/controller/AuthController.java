@@ -54,6 +54,19 @@ public class AuthController {
             AuthResponseDto authResponseDto = new AuthResponseDto();
             authResponseDto.setToken(jwt);
             authResponseDto.setRefreshToken(refreshToken);
+            authResponseDto.setNombre(userModel.getNombre());
+            authResponseDto.setApellido(userModel.getApellido());
+            authResponseDto.setRol(userModel.getRol());
+            authResponseDto.setId(userModel.getId_usuarios());
+            authResponseDto.setProyectosTotal(userRepository.countTotalProyectosByUsuario(userModel.getId_usuarios()));
+            authResponseDto.setProyectosEnCurso(userRepository.countProyectosEnCursoByUsuario(userModel.getId_usuarios()));
+            authResponseDto.setProyectosFinalizados(userRepository.countProyectosFinalizadosByUsuario(userModel.getId_usuarios()));
+            authResponseDto.setProyectosSuspendidos(userRepository.countProyectosSuspendidosByUsuario((userModel.getId_usuarios())));
+            authResponseDto.setMaestrosTotal(userRepository.countTotalMaestros());
+            authResponseDto.setMaestrosDisponibles(userRepository.countMaestrosDisponibles());
+            authResponseDto.setMaestrosAsignados(userRepository.countMaestrosAsignados());
+            authResponseDto.setProveedoresTotal(userRepository.countProveedoresTotal());
+
 
             return new ResponseEntity<AuthResponseDto>(authResponseDto, HttpStatus.OK);
 

@@ -11,8 +11,8 @@
                 <img class="rounded-full w-16 h-16 relative object-cover" src="usuario.png" alt="">
             </div>
             <div>
-                <p class="font-medium group-hover:text-red-400 leading-4">Wilson Nuñez</p>
-                <span class="text-xs text-slate-400">Contratista</span>
+                <p class="font-medium group-hover:text-red-400 leading-4">{{ user?.nombre }} {{ user?.apellido }}</p>
+                <span class="text-xs text-slate-400">{{ user?.rol }}</span>
             </div>
         </a>
         <hr class="my-2 border-slate-700">

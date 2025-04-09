@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "inventario_inicial")
 @Data
@@ -31,6 +33,19 @@ public class InventarioInicialModel {
 
     @Column(name = "unidad", nullable = false, length = 25)
     private String unidad;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        InventarioInicialModel that = (InventarioInicialModel) o;
+        return Objects.equals(idInventarioInicial, that.idInventarioInicial);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idInventarioInicial);
+    }
 
     public Integer getIdInventarioInicial() {
         return idInventarioInicial;

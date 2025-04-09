@@ -1,5 +1,7 @@
 package constructora.constructorabackend.service;
 
+import constructora.constructorabackend.model.InsumoModel;
+import constructora.constructorabackend.model.ProyectModel;
 import constructora.constructorabackend.model.StockModel;
 import constructora.constructorabackend.repository.IStockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,11 @@ public class StockService implements IStockService{
     }
 
     @Override
+    public Optional<StockModel> findByProyectoAndInsumo(ProyectModel proyecto, InsumoModel insumo){
+        return iStockRepository.findByProyectoAndInsumo(proyecto, insumo);
+    }
+
+    @Override
     public StockModel updateStock(StockModel StockModel) {
         return iStockRepository.save(StockModel);
     }
@@ -32,6 +39,11 @@ public class StockService implements IStockService{
     @Override
     public Optional<StockModel> getStockById(Integer idStock) {
         return iStockRepository.findById(idStock);
+    }
+
+    @Override
+    public List<StockModel> getStockByProyecto(Integer idProyecto) {
+        return iStockRepository.findByProyectoId(idProyecto);
     }
 
     @Override
