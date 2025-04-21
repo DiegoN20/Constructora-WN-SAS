@@ -91,7 +91,7 @@ export class EditDialogComponent {
     if (numero === null || !numero) {
         return true; // O maneja el caso como prefieras
     }
-    return numero > 0;
+    return numero > -1;
   }
 
   isFechaValida(fecha: string): boolean {

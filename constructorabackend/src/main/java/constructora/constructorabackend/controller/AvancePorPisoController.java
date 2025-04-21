@@ -49,13 +49,6 @@ public class AvancePorPisoController {
                 return new ResponseEntity<>("El insumo proporcionado no existe.", HttpStatus.BAD_REQUEST);
             }
 
-            Optional<AvancePorPisoModel> existente = avancePorPisoService.findByProyectoAndInsumo(
-                    optionalProyecto.get(),
-                    optionalInsumo.get()
-            );
-            if (existente.isPresent()){
-                return new ResponseEntity<>( "Ya existe un registro de avance por piso para este proyecto e insumo.", HttpStatus.CONFLICT);
-            }
             avancePorPisoModel.setProyecto(optionalProyecto.get());
             avancePorPisoModel.setInsumo(optionalInsumo.get());
 
