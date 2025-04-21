@@ -10,4 +10,8 @@ class ConstructorabackendApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void shouldHaveExpectedBeans() {
+		// Puedes agregar más pruebas de integración aquí
+	}
 }

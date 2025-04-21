@@ -16,11 +16,13 @@ public class MaestroService implements IMaestroService{
 
     @Override
     public MaestroModel saveMaestro(MaestroModel maestroModel) {
+        validateMaestro(maestroModel);
         return iMaestroRepository.save(maestroModel);
     }
 
     @Override
     public MaestroModel updateMaestro(MaestroModel maestroModel) {
+        validateMaestro(maestroModel);
         return iMaestroRepository.save(maestroModel);
     }
 
@@ -31,11 +33,17 @@ public class MaestroService implements IMaestroService{
 
     @Override
     public Optional<MaestroModel> getMaestroById(Integer id) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID no valido");
+        }
         return iMaestroRepository.findById(id);
     }
 
     @Override
     public void deleteMaestro(Integer id) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID no valido");
+        }
         iMaestroRepository.deleteById(id);
     }
 
@@ -44,4 +52,11 @@ public class MaestroService implements IMaestroService{
         return iMaestroRepository.findByEstadoMaestro(MaestroModel.EstadoMaestro.Disponible); // Utiliza el repositorio para buscar por estado
     }
 
+    private void validateMaestro(MaestroModel maestro) {
+        if (maestro.getCedula() <= 0 || maestro.getTelefono() <= 0 || maestro.getSalario() <= 0 ||
+                maestro.getNombre() == null || maestro.getNombre().isEmpty() ||
+                maestro.getApellido() == null || maestro.getApellido().isEmpty()) {
+            throw new IllegalArgumentException("Datos inválidos");
+        }
+    }
 }

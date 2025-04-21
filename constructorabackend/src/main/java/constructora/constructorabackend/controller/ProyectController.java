@@ -155,13 +155,13 @@ public class ProyectController {
             Optional<ProyectModel> proyectModel = proyectService.getProyectoById(id);
             if (proyectModel.isPresent()) {
                 proyectService.deleteProyecto(id);
-                return new ResponseEntity<>("Proyecto eliminado con éxito.", HttpStatus.OK);
+                return new ResponseEntity<>(HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("El proyecto con el ID especificado no existe.", HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>("Error interno al eliminar el proyecto.", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

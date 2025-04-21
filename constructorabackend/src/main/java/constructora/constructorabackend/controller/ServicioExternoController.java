@@ -205,6 +205,7 @@ public class ServicioExternoController {
             dto.setFechaInicio(servicio.getFechaInicio());
             dto.setFechaFin(servicio.getFechaFin());
             dto.setPersonaEncargada(servicio.getPersonaEncargada());
+            dto.setTelefono(servicio.getTelefono());
             return dto;
         }).toList();
         return new ResponseEntity<>(dtos, HttpStatus.OK);

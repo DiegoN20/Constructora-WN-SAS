@@ -41,10 +41,6 @@ public class AvancePorPisoModel {
     @Column(name = "cantidad_usada", nullable = false)
     private int cantidadUsada;
 
-    public Integer getIdAvancePorPiso() {
-        return idAvancePorPiso;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,6 +52,10 @@ public class AvancePorPisoModel {
     @Override
     public int hashCode() {
         return Objects.hash(idAvancePorPiso);
+    }
+
+    public Integer getIdAvancePorPiso() {
+        return idAvancePorPiso;
     }
 
     public void setIdAvancePorPiso(int idAvancePorPiso) {
