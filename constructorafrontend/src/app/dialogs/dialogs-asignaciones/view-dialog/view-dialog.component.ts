@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { NewDialogComponent } from '../new-dialog/new-dialog.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ProyectosService } from '../../../core/services/proyectos.service';
 import { Router } from '@angular/router';
+import { AsignacionesService } from '../../../core/services/asignaciones.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class ViewDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<NewDialogComponent>,
-      private proyectosService: ProyectosService,
+      private asignacionesService: AsignacionesService,
       private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any){}
 

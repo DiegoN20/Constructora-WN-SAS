@@ -12,7 +12,7 @@ import { InsumosService } from '../../../core/services/insumos.service';
 export class ViewDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<NewDialogComponent>,
-      private InsumosService: InsumosService,
+      private insumosService: InsumosService,
     @Inject(MAT_DIALOG_DATA) public data: any){}
 
   onCancel(): void {

@@ -29,7 +29,7 @@ export class NewDialogComponent {
   };
 
   constructor(public dialogRef: MatDialogRef<NewDialogComponent>,
-    private asignacionService: AsignacionesService,
+    private asignacionesService: AsignacionesService,
     private maestrosService: MaestrosService,
     private route: ActivatedRoute,
     private toastr: ToastrService,
@@ -117,7 +117,7 @@ export class NewDialogComponent {
       });
       return;
     }
-    this.asignacionService.createAsignacion(this.asignacion).subscribe({
+    this.asignacionesService.createAsignacion(this.asignacion).subscribe({
       next: (response) => {
         this.toastr.success('Asignación creado exitosamente.', 'Éxito', {
           timeOut: 3000,

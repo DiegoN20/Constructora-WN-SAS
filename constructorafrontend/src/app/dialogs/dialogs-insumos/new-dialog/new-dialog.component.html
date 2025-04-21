@@ -34,7 +34,6 @@
                         id="descripcion"
                         name="descripcion"
                         [(ngModel)]="insumo.descripcion"
-                        required
                         maxlength="45"
                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         />
@@ -45,7 +44,8 @@
                         <select 
                           id="tipo" 
                           name="tipo" 
-                          [(ngModel)]="insumo.tipo" 
+                          [(ngModel)]="insumo.tipo"
+                          required
                           class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
                           <option value="" disabled selected>Seleccione un estado</option>

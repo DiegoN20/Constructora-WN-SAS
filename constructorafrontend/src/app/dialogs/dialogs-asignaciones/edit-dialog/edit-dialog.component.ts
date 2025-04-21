@@ -28,7 +28,7 @@ export class EditDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<EditDialogComponent>,
-    private asignacionService: AsignacionesService,
+    private asignacionesService: AsignacionesService,
     private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
@@ -107,7 +107,7 @@ export class EditDialogComponent {
       });
       return;
     }
-    this.asignacionService.updateAsignacion(this.asignacion).subscribe({
+    this.asignacionesService.updateAsignacion(this.asignacion).subscribe({
       next: (response) => {
         this.toastr.success('Asignación creado exitosamente.', 'Éxito', {
           timeOut: 3000,

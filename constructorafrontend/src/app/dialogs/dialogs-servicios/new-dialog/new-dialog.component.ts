@@ -155,7 +155,6 @@ export class NewDialogComponent {
   }
 
   onCancel(): void {
-    console.log(this.servicio)
     this.dialogRef.close();
   }
 }

@@ -22,7 +22,7 @@
                             [(ngModel)]="inventario.insumo.idInsumos"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-red-500"
                             required>
-                            <option value="" disabled selected>Seleccione un maestro</option>
+                            <option value="" disabled selected>Seleccione un Insumo</option>
                             <option *ngFor="let insumo of insumos" [value]="insumo.idInsumos">
                                 {{ insumo.nombreInsumo }}
                             </option>

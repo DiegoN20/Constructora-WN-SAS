@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { MaestrosService } from '../../../core/services/maestros.service';
+import { ProyectosService } from '../../../core/services/proyectos.service';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -11,14 +11,14 @@ import { MaestrosService } from '../../../core/services/maestros.service';
 })
 export class DeleteDialogComponent {
   constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>,
-        private maestrosService: MaestrosService,
+        private proyectosService: ProyectosService,
         private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
   
   // Método para cerrar el diálogo sin eliminar
   onCancel(): void {
-    console.log(this.data)
+    console.log(this.data.idProyectos)
     this.dialogRef.close(); // Retorna 'false' para indicar que no se realizó la acción
   }
 
@@ -34,17 +34,17 @@ export class DeleteDialogComponent {
       return;
     }
   
-    this.maestrosService.deleteMaestro(this.data.id_maestros_de_obra).subscribe({
+    this.proyectosService.deleteProyecto(this.data.idProyectos).subscribe({
       next: (response) => {
-        this.toastr.success('Maestro eliminado exitosamente.', 'Éxito', {
+        this.toastr.success('Proyecto eliminado exitosamente.', 'Éxito', {
           timeOut: 3000,
           positionClass: 'toast-top-center'
         });
         this.dialogRef.close(true);
       },
       error: (err) => {
-        console.error('Error al eliminar Maestro:', err);
-        this.toastr.error('Error al eliminar Maestro.', 'Error', {
+        console.error('Error al eliminar el Proyecto:', err);
+        this.toastr.error('Error al eliminar Proyecto.', 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center'
         });

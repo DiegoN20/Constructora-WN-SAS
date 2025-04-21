@@ -49,6 +49,7 @@
                         [(ngModel)]="maestro.telefono"
                         pattern="^[0-9]+$"
                         maxlength="10"
+                        required
                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         />
                         <div *ngIf="!isTelefonoValido(maestro.telefono)" class="text-red-500 text-sm">
@@ -61,7 +62,8 @@
                         <select 
                           id="estadoMaestro"
                           name="estadoMaestro" 
-                          [(ngModel)]="maestro.estadoMaestro" 
+                          [(ngModel)]="maestro.estadoMaestro"
+                          required
                           class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         >
                           <option value="" disabled selected>Seleccione un estado</option>
@@ -81,6 +83,7 @@
                         [(ngModel)]="maestro.salario"
                         pattern="^[0-9]+$"
                         maxlength="10"
+                        required
                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         />
                         <div *ngIf="!isSalarioValido(maestro.salario)" class="text-red-500 text-sm">
@@ -111,7 +114,6 @@
                         id="fechaDesvinculacion"
                         name="fechaDesvinculacion"
                         [(ngModel)]="maestro.fechaDesvinculacion"
-                        required
                         maxlength="10"
                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                         />
