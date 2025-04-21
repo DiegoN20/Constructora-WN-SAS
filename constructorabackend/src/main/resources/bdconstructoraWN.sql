@@ -504,10 +504,23 @@ DROP TRIGGER IF EXISTS `bdconstructora`.`avance_por_pisos_AFTER_INSERT` $$
 USE `bdconstructora`$$
 CREATE DEFINER = CURRENT_USER TRIGGER `bdconstructora`.`avance_por_pisos_AFTER_INSERT` AFTER INSERT ON `avance_por_pisos` FOR EACH ROW
 BEGIN
-	UPDATE `stock`
-	SET `cantidad_total` = `cantidad_total` + NEW.`cantidad_comprada`,
-		`cantidad_invertida` = `cantidad_invertida` + NEW.`cantidad_usada`
-	WHERE `proyectos_id_proyectos` = NEW.`proyectos_id_proyectos` AND `insumos_id_insumos` = NEW.`insumos_id_insumos`;
+	IF NOT EXISTS (
+        SELECT 1
+        FROM `stock`
+        WHERE `proyectos_id_proyectos` = NEW.`proyectos_id_proyectos`
+          AND `insumos_id_insumos` = NEW.`insumos_id_insumos`
+    ) THEN
+        -- Crear nuevo registro en `stock` si no existe
+        INSERT INTO `stock` (`proyectos_id_proyectos`, `insumos_id_insumos`, `cantidad_total`, `cantidad_invertida`)
+        VALUES (NEW.`proyectos_id_proyectos`, NEW.`insumos_id_insumos`, NEW.`cantidad_comprada`, NEW.`cantidad_usada`);
+    ELSE
+        -- Actualizar cantidades en `stock` si ya existe
+        UPDATE `stock`
+        SET `cantidad_total` = `cantidad_total` + NEW.`cantidad_comprada`,
+            `cantidad_invertida` = `cantidad_invertida` + NEW.`cantidad_usada`
+        WHERE `proyectos_id_proyectos` = NEW.`proyectos_id_proyectos`
+          AND `insumos_id_insumos` = NEW.`insumos_id_insumos`;
+    END IF;
     CALL actualizar_presupuesto_actual_proyecto(NEW.proyectos_id_proyectos);
     CALL actualizar_presupuesto_restante_proyecto(NEW.proyectos_id_proyectos);
 END$$
@@ -546,8 +559,22 @@ DROP TRIGGER IF EXISTS `bdconstructora`.`inventario_inicial_AFTER_INSERT` $$
 USE `bdconstructora`$$
 CREATE DEFINER = CURRENT_USER TRIGGER `bdconstructora`.`inventario_inicial_AFTER_INSERT` AFTER INSERT ON `inventario_inicial` FOR EACH ROW
 BEGIN
-	INSERT INTO `stock` (`proyectos_id_proyectos`, `insumos_id_insumos`, `cantidad_total`)
-	VALUES (NEW.`proyectos_id_proyectos`, NEW.`insumos_id_insumos`, NEW.`cantidad`);
+	IF NOT EXISTS (
+        SELECT 1
+        FROM `stock`
+        WHERE `proyectos_id_proyectos` = NEW.`proyectos_id_proyectos`
+          AND `insumos_id_insumos` = NEW.`insumos_id_insumos`
+    ) THEN
+        -- Crear nuevo registro en stock
+        INSERT INTO `stock` (`proyectos_id_proyectos`, `insumos_id_insumos`, `cantidad_total`)
+        VALUES (NEW.`proyectos_id_proyectos`, NEW.`insumos_id_insumos`, NEW.`cantidad`);
+    ELSE
+        -- Actualizar cantidades en stock
+        UPDATE `stock`
+        SET `cantidad_total` = `cantidad_total` + NEW.`cantidad`
+        WHERE `proyectos_id_proyectos` = NEW.`proyectos_id_proyectos`
+          AND `insumos_id_insumos` = NEW.`insumos_id_insumos`;
+    END IF;
 END$$
 
 
@@ -556,6 +583,10 @@ DROP TRIGGER IF EXISTS `bdconstructora`.`inventario_inicial_AFTER_UPDATE` $$
 USE `bdconstructora`$$
 CREATE DEFINER = CURRENT_USER TRIGGER `bdconstructora`.`inventario_inicial_AFTER_UPDATE` AFTER UPDATE ON `inventario_inicial` FOR EACH ROW
 BEGIN
+	UPDATE `stock`
+	SET `cantidad_total` = `cantidad_total` + NEW.`cantidad` - OLD.`cantidad`
+	WHERE `proyectos_id_proyectos` = NEW.`proyectos_id_proyectos`
+	  AND `insumos_id_insumos` = NEW.`insumos_id_insumos`;
 	CALL actualizar_presupuesto_actual_proyecto(NEW.proyectos_id_proyectos);
     CALL actualizar_presupuesto_restante_proyecto(NEW.proyectos_id_proyectos);
 END$$
