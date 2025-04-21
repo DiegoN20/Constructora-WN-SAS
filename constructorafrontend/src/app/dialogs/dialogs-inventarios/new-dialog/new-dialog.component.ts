@@ -84,7 +84,7 @@ export class NewDialogComponent {
     if (numero === null) {
         return false; // O maneja el caso como prefieras
     }
-    return numero > 0;
+    return numero > -1;
   }
 
   onSave(): void {
