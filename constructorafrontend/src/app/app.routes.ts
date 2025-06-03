@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import path from 'path';
 import { authGuard } from './core/guards/auth.guard';
 import { authenticatedGuard } from './core/guards/authenticated.guard';
 
@@ -30,10 +29,43 @@ export const routes: Routes = [
                 canActivate: [authGuard]
             },
             {
+                path: 'proyectos/:id',
+                canActivate: [authGuard],
+                children: [
+                    {
+                        path: 'asignaciones',
+                        loadComponent: () => import('./business/proyectos/asignaciones/asignaciones.component').then(m => m.AsignacionesComponent),
+                        canActivate: [authGuard]
+                    },
+                    {
+                        path: 'servicios',
+                        loadComponent: () => import('./business/proyectos/servicios/servicios.component').then(m => m.ServiciosComponent),
+                        canActivate: [authGuard]
+                    },
+                    {
+                        path: 'inventarios',
+                        loadComponent: () => import('./business/proyectos/inventarios/inventarios.component').then(m => m.InventariosComponent),
+                        canActivate: [authGuard]
+                    },
+                    {
+                        path: 'avances',
+                        loadComponent: () => import('./business/proyectos/avances/avances.component').then(m => m.AvancesComponent),
+                        canActivate: [authGuard]
+                    },
+                    {
+                        path: 'stock',
+                        loadComponent: () => import('./business/proyectos/stock/stock.component').then(m => m.StockComponent),
+                        canActivate: [authGuard]
+                    }
+                ]
+            },
+
+            {
                 path: 'proveedores',
                 loadComponent: () => import('./business/proveedores/proveedores.component'),
                 canActivate: [authGuard]
             },
+            
             {
                 path: '',
                 redirectTo: 'dashboard',
@@ -47,8 +79,14 @@ export const routes: Routes = [
         canActivate: [authenticatedGuard]
     },
     {
-        path: 'contrasena',
-        loadComponent: () => import('./business/authentication/contrasena/contrasena.component')
+        path: 'sendemail',
+        loadComponent: ()=> import ('./business/authentication/changepassword/send-email/send-email.component'),
+        canActivate: [authenticatedGuard]
+    },
+    {
+        path: 'change-password/:tokenPassword',
+        loadComponent: ()=> import ('./business/authentication/changepassword/change-password/change-password.component'),
+        canActivate: [authenticatedGuard]
     },
     {
         path: '**',

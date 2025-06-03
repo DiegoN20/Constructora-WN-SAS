@@ -1,10 +1,11 @@
 <!-- component -->
 <div class="antialiased bg-black w-full min-h-screen text-slate-200 relative py-1">
-    <div
-        class="grid grid-cols-11 mx-auto gap-2 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-14 max-w-7xl px-2 antialiased bg-black w-full min-h-screen text-slate-300 relative py-1">
+    <div class="grid grid-cols-11 mx-auto max-w-7xl p-2 w-full min-h-screen relative 
+            bg-black text-slate-300 antialiased
+            gap-2 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-14">
         <div id="content" class="bg-gradient-to-br from-gray-700 to-gray-900 col-span-12 rounded-lg p-6">
             <div id="24h">
-                <h1 class="font-bold py-4 uppercase">Last 24h Statistics</h1>
+                <h1 class="font-bold py-4 uppercase">Actualidad Constructora WN SAS</h1>
                 <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="bg-black/60 to-white/5 p-6 rounded-lg">
                         <div class="flex flex-row space-x-4 items-center">
@@ -16,9 +17,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-indigo-300 text-sm font-medium uppercase leading-4">Users</p>
+                                <p class="text-indigo-300 text-sm font-medium uppercase leading-4">Maestros Total</p>
                                 <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
-                                    <span>+28</span>
+                                    <span>{{ user?.maestrosTotal }}</span>
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -37,21 +38,19 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-white">
                                     <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
                                 </svg>
-
                             </div>
                             <div>
-                                <p class="text-teal-300 text-sm font-medium uppercase leading-4">Income</p>
+                                <p class="text-teal-300 text-sm font-medium uppercase leading-4">Proyectos Total</p>
                                 <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
-                                    <span>$2,873.88</span>
+                                    <span>{{ user?.proyectosTotal }}</span>
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
                                         </svg>
-
                                     </span>
                                 </p>
                             </div>
@@ -68,9 +67,9 @@
 
                             </div>
                             <div>
-                                <p class="text-blue-300 text-sm font-medium uppercase leading-4">Invoices</p>
+                                <p class="text-blue-300 text-sm font-medium uppercase leading-4">Proveedores Total</p>
                                 <p class="text-white font-bold text-2xl inline-flex items-center space-x-2">
-                                    <span>+79</span>
+                                    <span>{{ user?.proveedoresTotal }}</span>
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -86,126 +85,51 @@
                 </div>
             </div>
             <div id="last-incomes">
-                <h1 class="font-bold py-4 uppercase">Last 24h incomes</h1>
-                <div id="stats" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <h1 class="font-bold py-4 uppercase">Proyectos y Maestros</h1>
+                <div id="stats" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
                     <div class="bg-black/60 to-white/5 rounded-lg">
                         <div class="flex flex-row items-center">
-                            <div class="text-3xl p-4">💰</div>
+                            <div class="text-3xl p-4">🏗️</div>
                             <div class="p-2">
-                                <p class="text-xl font-bold">348$</p>
-                                <p class="text-gray-500 font-medium">Amber Gates</p>
-                                <p class="text-gray-500 text-sm">24 Nov 2022</p>
+                                <p class="text-xl font-bold">Proyectos En Curso</p>
+                                <p class="text-gray-500 font-medium">{{ user?.proyectosEnCurso }}</p>
                             </div>
-                        </div>
-                        <div class="border-t border-white/5 p-4">
-                            <a href="#" class="inline-flex space-x-2 items-center text-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                                </svg>
-                                <span>Info</span>
-                            </a>
                         </div>
                     </div>
                     <div class="bg-black/60 to-white/5 rounded-lg">
                         <div class="flex flex-row items-center">
-                            <div class="text-3xl p-4">💰</div>
+                            <div class="text-3xl p-4">🏘️</div>
                             <div class="p-2">
-                                <p class="text-xl font-bold">68$</p>
-                                <p class="text-gray-500 font-medium">Maia Kipper</p>
-                                <p class="text-gray-500 text-sm">23 Nov 2022</p>
+                                <p class="text-xl font-bold">Proyectos Finalizados</p>
+                                <p class="text-gray-500 font-medium">{{ user?.proyectosFinalizados }}</p>
                             </div>
-                        </div>
-                        <div class="border-t border-white/5 p-4">
-                            <a href="#" class="inline-flex space-x-2 items-center text-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                                </svg>
-                                <span>Info</span>
-                            </a>
                         </div>
                     </div>
                     <div class="bg-black/60 to-white/5 rounded-lg">
                         <div class="flex flex-row items-center">
-                            <div class="text-3xl p-4">💰</div>
+                            <div class="text-3xl p-4">⚠️</div>
                             <div class="p-2">
-                                <p class="text-xl font-bold">12$</p>
-                                <p class="text-gray-500 font-medium">Oprah Milles</p>
-                                <p class="text-gray-500 text-sm">23 Nov 2022</p>
+                                <p class="text-xl font-bold">Proyectos Suspendidos</p>
+                                <p class="text-gray-500 font-medium">{{ user?.proyectosSuspendidos }}</p>
                             </div>
-                        </div>
-                        <div class="border-t border-white/5 p-4">
-                            <a href="#" class="inline-flex space-x-2 items-center text-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                                </svg>
-                                <span>Info</span>
-                            </a>
                         </div>
                     </div>
                     <div class="bg-black/60 to-white/5 rounded-lg">
                         <div class="flex flex-row items-center">
-                            <div class="text-3xl p-4">💰</div>
+                            <div class="text-3xl p-4">👷🏽✅</div>
                             <div class="p-2">
-                                <p class="text-xl font-bold">105$</p>
-                                <p class="text-gray-500 font-medium">Jonny Nite</p>
-                                <p class="text-gray-500 text-sm">23 Nov 2022</p>
+                                <p class="text-xl font-bold">Maestros Disponibles</p>
+                                <p class="text-gray-500 font-medium">{{ user?.maestrosDisponibles }}</p>
                             </div>
-                        </div>
-                        <div class="border-t border-white/5 p-4">
-                            <a href="#" class="inline-flex space-x-2 items-center text-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                                </svg>
-                                <span>Info</span>
-                            </a>
                         </div>
                     </div>
                     <div class="bg-black/60 to-white/5 rounded-lg">
                         <div class="flex flex-row items-center">
-                            <div class="text-3xl p-4">💰</div>
+                            <div class="text-3xl p-4">👷🏽❎</div>
                             <div class="p-2">
-                                <p class="text-xl font-bold">52$</p>
-                                <p class="text-gray-500 font-medium">Megane Baile</p>
-                                <p class="text-gray-500 text-sm">22 Nov 2022</p>
+                                <p class="text-xl font-bold">Maestros Asignados</p>
+                                <p class="text-gray-500 font-medium">{{ user?.maestrosAsignados }}</p>
                             </div>
-                        </div>
-                        <div class="border-t border-white/5 p-4">
-                            <a href="#" class="inline-flex space-x-2 items-center text-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                                </svg>
-                                <span>Info</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="bg-black/60 to-white/5 rounded-lg">
-                        <div class="flex flex-row items-center">
-                            <div class="text-3xl p-4">💰</div>
-                            <div class="p-2">
-                                <p class="text-xl font-bold">28$</p>
-                                <p class="text-gray-500 font-medium">Tony Ankel</p>
-                                <p class="text-gray-500 text-sm">22 Nov 2022</p>
-                            </div>
-                        </div>
-                        <div class="border-t border-white/5 p-4">
-                            <a href="#" class="inline-flex space-x-2 items-center text-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-                                </svg>
-                                <span>Info</span>
-                            </a>
                         </div>
                     </div>
                 </div>

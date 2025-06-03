@@ -1,0 +1,78 @@
+<!-- Modal -->
+<div x-show="showModal" x-transition:enter="transition ease-out duration-300 transform"
+    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+    x-transition:leave="transition ease-in duration-200 transform"
+    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    class="fixed z-10 inset-0 overflow-y-auto" x-cloak>
+    <div class="flex items-center justify-center min-h-screen px-4 text-center">
+        <!-- Modal panel -->
+        <div class="bg-white rounded-lg shadow-xl sm:w-96">
+            <div class="p-6">
+                <!-- Modal title -->
+                <h3 class="text-lg font-medium text-gray-900">Agregar Asignación</h3>
+                <div class="mt-4 space-y-4">
+                    <!--Fecha Asignacion-->
+                    <div>
+                        <label for="fechaAsignacion" class="block text-sm font-medium text-gray-700">Fecha Asignación</label>
+                        <input
+                        type="date"
+                        id="fechaAsignacion"
+                        name="fechaAsignacion"
+                        [(ngModel)]="asignacion.fechaAsignacion"
+                        required
+                        maxlength="10"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        />
+                        <div *ngIf="!isFechaValida(asignacion.fechaAsignacion)" class="text-red-500 text-sm mt-2">
+                            Ingresa una fecha válida en formato AAAA-MM-DD.
+                        </div>                        
+                    </div>
+                    <!--Fecha Fin-->
+                    <div>
+                        <label for="fechaFin" class="block text-sm font-medium text-gray-700">Fecha Fin</label>
+                        <input
+                        type="date"
+                        id="fechaFin"
+                        name="fechaFin"
+                        [(ngModel)]="asignacion.fechaFin"
+                        maxlength="10"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        />
+                        <div *ngIf="!isFechaValida(asignacion.fechaFin)" class="text-red-500 text-sm mt-2">
+                            Ingresa una fecha válida en formato AAAA-MM-DD.
+                        </div>                        
+                    </div>
+                    <!-- Estado Asignación -->
+                    <div class="w-full max-w-sm mx-auto">
+                        <label for="estadoAsignacion" class="block text-sm font-medium text-gray-700">Estado Asignación</label>
+                        <select 
+                          id="estadoAsignacion" 
+                          name="estadoAsignacion" 
+                          [(ngModel)]="asignacion.estadoAsignacion"
+                          required
+                          class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        >
+                          <option value="" disabled selected>Seleccione un estado</option>
+                          <option value="Activo">Activo</option>
+                          <option value="Finalizado">Finalizado</option>
+                          <option value="Suspendido">Suspendido</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Action buttons -->
+            <div class="flex justify-end bg-gray-50 p-4">
+                <button (click)="onCancel()" type="button"
+                    class="px-4 py-2 mr-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 focus:ring-2 focus:ring-blue-500">
+                    Cancelar
+                </button>
+                <button (click)="onSave()" type="button"
+                    class="px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:ring-2 focus:ring-red-500">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

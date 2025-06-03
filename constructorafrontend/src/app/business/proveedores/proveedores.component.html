@@ -1,153 +1,97 @@
-<div class="antialiased bg-black w-full min-h-screen text-slate-300 relative py-4">
-    <div class="grid grid-cols-10 mx-auto gap-2 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-14 max-w-7xl my-10 px-2 antialiased bg-black w-full min-h-screen text-slate-300 relative py-4">
+<div class="antialiased bg-black w-full min-h-screen text-slate-300 relative py-1">
+    <div class="grid grid-cols-10 mx-auto gap-2 sm:gap-4 md:gap-6 lg:gap-10 xl:gap-14 max-w-7xl  px-2 antialiased bg-black w-full min-h-screen text-slate-300 relative py-1">
         <div id="content" class="bg-gradient-to-br from-gray-700 to-gray-900 col-span-12 rounded-lg p-6">
             <div id="last-users">
-                <h1 class="font-bold py-4 uppercase">Proveedores</h1>
+                <h1 class="font-bold px-1 py-1 uppercase">Proveedores</h1>
+                <div class="flex items-center space-x-4 px-1 py-2 rounded w-full">
+                    <div class="relative flex-1 max-w-full">
+                        <input 
+                            class="w-full border-gray-300 border rounded-lg px-4 py-2 pr-12 focus:outline-none" 
+                            type="search" 
+                            name="search" 
+                            placeholder="Search..."
+                        />
+                        <button 
+                            type="submit" 
+                            class="absolute right-1 top-1 bottom-1 bg-red-600 rounded-lg px-3 flex items-center justify-center text-white">
+                            <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.966 56.966" width="512px" height="512px">
+                                <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <button 
+                        (click)="openNewDialog()" class="px-6 py-2 border border-gray-400 rounded-lg hover:bg-red-600 hover:text-white transition duration-200 ease-in-out focus:outline-none">
+                        Agregar Proveedor
+                    </button>
+                </div>
                 <div class="overflow-x-scroll">
                     <table class="w-full whitespace-nowrap">
                         <thead class="bg-black/60">
-                            <th class="text-left py-3 px-2 rounded-l-lg">Name</th>
-                            <th class="text-left py-3 px-2">Email</th>
-                            <th class="text-left py-3 px-2">Group</th>
-                            <th class="text-left py-3 px-2">Status</th>
+                            <th class="text-left py-3 px-2 rounded-l-lg">Id</th>
+                            <th class="text-left py-3 px-2">Nombre</th>
+                            <th class="text-left py-3 px-2">Servicio</th>
+                            <th class="text-left py-3 px-2">Correo</th>
+                            <th class="text-left py-3 px-2">Telefono</th>
                             <th class="text-left py-3 px-2 rounded-r-lg">Actions</th>
                         </thead>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-3 px-2 font-bold">
-                                <div class="inline-flex space-x-3 items-center">
-                                    <span><img class="rounded-full w-8 h-8" src="https://images.generated.photos/tGiLEDiAbS6NdHAXAjCfpKoW05x2nq70NGmxjxzT5aU/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/OTM4ODM1LmpwZw.jpg" alt=""></span>
-                                    <span>Thai Mei</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-2">thai.mei&#64;abc.com</td>
-                            <td class="py-3 px-2">User</td>
-                            <td class="py-3 px-2">Approved</td>
+                        <tr *ngFor="let proveedor of paginatedProveedores" class="border-b border-gray-700">
+                            
+                            <td class="py-3 px-2">{{ proveedor.idProveedores }}</td>
+                            <td class="py-3 px-2">{{ proveedor.nombreProveedor }}</td>
+                            <td class="py-3 px-2">{{ proveedor.tipoServicio }}</td>
+                            <td class="py-3 px-2">{{ proveedor.correo }}</td>
+                            <td class="py-3 px-2">{{ proveedor.telefono }}</td>
                             <td class="py-3 px-2">
                                 <div class="inline-flex items-center space-x-3">
-                                    <a href="" title="Edit" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <button (click)="openEditDialog(proveedor)" href="" title="Edit" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                        </svg>
+                                    </button>
+                                    <button (click)="openDeleteDialog(proveedor)" href="" title="Delete" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                                     </svg>
-                                    </a>
-                                    <a href="" title="Edit password" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                                    </svg>
-                                    </a>
-                                    <a href="" title="Suspend user" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                    </svg>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-3 px-2 font-bold">
-                                <div class="inline-flex space-x-3 items-center">
-                                    <span><img class="rounded-full w-8 h-8" src="https://images.generated.photos/tGiLEDiAbS6NdHAXAjCfpKoW05x2nq70NGmxjxzT5aU/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/OTM4ODM1LmpwZw.jpg" alt=""></span>
-                                    <span>Thai Mei</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-2">thai.mei&#64;abc.com</td>
-                            <td class="py-3 px-2">User</td>
-                            <td class="py-3 px-2">Approved</td>
-                            <td class="py-3 px-2">
-                                <div class="inline-flex items-center space-x-3">
-                                    <a href="" title="Edit" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                    </svg>
-                                    </a>
-                                    <a href="" title="Edit password" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                                    </svg>
-                                    </a>
-                                    <a href="" title="Suspend user" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                    </svg>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-3 px-2 font-bold">
-                                <div class="inline-flex space-x-3 items-center">
-                                    <span><img class="rounded-full w-8 h-8" src="https://images.generated.photos/tGiLEDiAbS6NdHAXAjCfpKoW05x2nq70NGmxjxzT5aU/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/OTM4ODM1LmpwZw.jpg" alt=""></span>
-                                    <span>Thai Mei</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-2">thai.mei&#64;abc.com</td>
-                            <td class="py-3 px-2">User</td>
-                            <td class="py-3 px-2">Approved</td>
-                            <td class="py-3 px-2">
-                                <div class="inline-flex items-center space-x-3">
-                                    <a href="" title="Edit" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                    </svg>
-                                    </a>
-                                    <a href="" title="Edit password" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                                    </svg>
-                                    </a>
-                                    <a href="" title="Suspend user" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                    </svg>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-700">
-                            <td class="py-3 px-2 font-bold">
-                                <div class="inline-flex space-x-3 items-center">
-                                    <span><img class="rounded-full w-8 h-8" src="https://images.generated.photos/niCVbIBAm4hahzwS83HoEtcVEIactkKohOzgXWYY4lM/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NTk4ODczLmpwZw.jpg" alt=""></span>
-                                    <span>Marquez Spineli</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-2">marquez.spineli&#64;cba.com</td>
-                            <td class="py-3 px-2">User</td>
-                            <td class="py-3 px-2">Approved</td>
-                            <td class="py-3 px-2">
-                                <div class="inline-flex items-center space-x-3">
-                                    <a href="" title="Edit" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                    </svg>
-                                    </a>
-                                    <a href="" title="Edit password" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                                    </svg>
-                                    </a>
-                                    <a href="" title="Suspend user" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                    </svg>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-gray-800">
-                            <td class="py-3 px-2 font-bold">
-                                <div class="inline-flex space-x-3 items-center">
-                                    <span><img class="rounded-full w-8 h-8" src="https://images.generated.photos/f_xU7q780YXiKG7IwKVV05eU6Sj2nIodEkN1S8GyM2M/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NDk2MTc4LmpwZw.jpg" alt=""></span>
-                                    <span>Mark Spike</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-2">mark.spike&#64;abc.com</td>
-                            <td class="py-3 px-2">Administrator</td>
-                            <td class="py-3 px-2">Approved</td>
-                            <td class="py-3 px-2">
-                                <div class="inline-flex items-center space-x-3">
-                                    <a href="" title="Edit" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                    </svg>
-                                    </a>
-                                    <a href="" title="Edit password" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                                    </svg>
-                                    </a>
-                                    <a href="" title="Suspend user" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-                                    </svg>
-                                    </a>
+                                    </button>
+                                    <button (click)="openViewDialog(proveedor)" href="" title="View" class="hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                        </svg>                                      
+                                    </button>
                                 </div>
                             </td>
                         </tr>
                     </table>
+                </div>
+            </div>
+            <div class="flex justify-between items-center px-4 py-3">
+                <div *ngIf="proveedores.length > 0; else noProveedores">
+                    Mostrando <b>{{ (currentPage - 1) * pageSize + 1 }}</b> - 
+                    <b *ngIf="proveedores.length > 1">{{ Math.min(currentPage * pageSize, proveedores.length) }}</b>
+                    <b *ngIf="proveedores.length === 1">{{ proveedores.length }}</b> de 
+                    <b>{{ proveedores.length }}</b>
+                </div>
+                <ng-template #noProveedores>
+                <p>No hay proveedores disponibles.</p>
+                </ng-template>
+                <div class="flex space-x-1">
+                    <div *ngIf="proveedores.length > 0; else noProveedores">
+                        <div class="flex space-x-1">
+                            <button class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease"
+                                [disabled]="currentPage === 1"
+                                (click)="changePage(currentPage - 1)"
+                            >Anterior</button>
+                            <button class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-white bg-slate-800 border border-slate-800 rounded hover:bg-slate-600 hover:border-slate-600 transition duration-200 ease"
+                                *ngFor="let page of [].constructor(Math.ceil(proveedores.length / pageSize)); let i = index"
+                                (click)="changePage(i + 1)"
+                                [class.active]="currentPage === i + 1"
+                            >{{ i + 1 }}</button>
+                            <button class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease"
+                                [disabled]="currentPage === Math.ceil(proveedores.length / pageSize)"
+                                (click)="changePage(currentPage + 1)"
+                            >Siguiente</button>
+                        </div>
+                    </div>
+                    <ng-template #noProveedores>
+                        <p class="text-center">No hay proveedores disponibles.</p>
+                    </ng-template>
                 </div>
             </div>
         </div>

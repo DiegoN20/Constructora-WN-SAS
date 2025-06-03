@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { response } from 'express';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private userKey = 'userData';
+
   private LOGIN_URL = 'http://localhost:3000/api/v1/auth/login';
   private tokenKey = 'authToken';
 
@@ -20,20 +21,43 @@ export class AuthService {
     return this.httpClient.post<any>(this.LOGIN_URL, {user, password}).pipe(
       tap(response => {
         if(response.token){
-          console.log(response.token);
+          
           this.setToken(response.token);
           this.setRefreshToken(response.refreshToken);
+          this.saveUserData({
+            nombre: response.nombre,
+            apellido: response.apellido,
+            rol: response.rol,
+            id: response.id,
+            proyectosTotal: response.proyectosTotal,
+            proyectosEnCurso: response.proyectosEnCurso,
+            proyectosFinalizados: response.proyectosFinalizados,
+            proyectosSuspendidos: response.proyectosSuspendidos,
+            maestrosTotal: response.maestrosTotal,
+            maestrosDisponibles: response.maestrosDisponibles,
+            maestrosAsignados: response.maestrosAsignados,
+            proveedoresTotal: response.proveedoresTotal
+          });
           this.autoRefreshToken();
         }
       })
     )
+  }
+
+  private saveUserData(userData: any): void {
+    localStorage.setItem(this.userKey, JSON.stringify(userData));
+  }
+
+  getUserData(): any {
+    const userData = localStorage.getItem(this.userKey);
+    return userData ? JSON.parse(userData) : null;
   }
   
   private setToken(token: string): void{
     localStorage.setItem(this.tokenKey, token);
   }
 
-  private getToken(): string | null{
+  public getToken(): string | null{
     if(typeof window !== 'undefined'){
       return localStorage.getItem(this.tokenKey);
     }else{
@@ -58,7 +82,6 @@ export class AuthService {
     return this.httpClient.post<any>(this.REFRESH_URL, {refreshToken}).pipe(
       tap(response => {
         if(response.token){
-          console.log(response.token);
           this.setToken(response.token);
           this.setRefreshToken(response.refreshToken);
           this.autoRefreshToken();

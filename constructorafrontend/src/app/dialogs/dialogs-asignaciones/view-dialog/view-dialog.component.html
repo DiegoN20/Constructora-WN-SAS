@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div x-show="showModal" x-transition:enter="transition ease-out duration-300 transform"
+    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+    x-transition:leave="transition ease-in duration-200 transform"
+    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    class="fixed z-10 inset-0 overflow-y-auto" x-cloak>
+    <div class="flex items-center justify-center min-h-screen px-4 text-center">
+        <!-- Modal panel -->
+        <div class="bg-white rounded-lg shadow-xl sm:w-96">
+            <div class="p-6">
+                <!-- Modal title -->
+                <h3 class="text-lg font-medium text-gray-900">Asignación</h3>
+                <div class="mt-4 space-y-4">
+                    <!-- Proyecto -->
+                    <div>
+                        <label for="proyecto" class="block text-sm font-medium text-gray-700">Proyecto:</label>
+                        {{ data.nombreProyecto }}
+                    </div>
+                    <!-- Maestro -->
+                    <div>
+                        <label for="maestro" class="block text-sm font-medium text-gray-700">Maestro:</label>
+                        {{ data.nombreMaestro }}
+                    </div>
+                    <!-- Fecha Asignacion -->
+                    <div>
+                        <label for="fechaAsignacion" class="block text-sm font-medium text-gray-700">Fecha de Asignación:</label>
+                        {{ data.fechaAsignacion }}
+                    </div>
+                    <!-- Fecha Fin -->
+                    <div>
+                        <label for="fechaFin" class="block text-sm font-medium text-gray-700">Fecha de Fin:</label>
+                        {{ data.fechaFin }}
+                    </div>
+                    <!-- Estado Asignacion -->
+                    <div>
+                        <label for="estadoAsignacion" class="block text-sm font-medium text-gray-700">Estado Asignación:</label>
+                        {{ data.estadoAsignacion }}
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-end bg-gray-50 p-4">
+                <button (click)="onCancel()" type="button"
+                    class= "w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-2 py-1 bg-red-500 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

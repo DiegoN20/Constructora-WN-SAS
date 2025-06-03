@@ -1,0 +1,125 @@
+<!-- Modal -->
+<div x-show="showModal" x-transition:enter="transition ease-out duration-300 transform"
+    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+    x-transition:leave="transition ease-in duration-200 transform"
+    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    class="fixed z-10 inset-0 overflow-y-auto" x-cloak>
+    <div class="flex items-center justify-center min-h-screen px-4 text-center">
+        <!-- Modal panel -->
+        <div class="bg-white rounded-lg shadow-xl sm:w-96">
+            <div class="p-6">
+                <!-- Modal title -->
+                <h3 class="text-lg font-medium text-gray-900">Agregar Avance</h3>
+                <div class="mt-4 space-y-4">
+                    <!-- Insumo -->
+                    <div>
+                        <label for="insumo" class="block text-sm font-medium text-gray-700">Insumo</label>
+                        <select
+                            id="insumo"
+                            name="insumo"
+                            [(ngModel)]="avance.insumo.idInsumos"
+                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-red-500"
+                            required>
+                            <option value="" disabled selected>Seleccione un maestro</option>
+                            <option *ngFor="let insumo of insumos" [value]="insumo.idInsumos">
+                                {{ insumo.nombreInsumo }}
+                            </option>
+                        </select>
+                    </div>
+                    <!-- Numero Piso -->
+                    <div>
+                        <label for="numeroPiso" class="block text-sm font-medium text-gray-700">Número Piso</label>
+                        <input
+                        type="text"
+                        id="numeroPiso"
+                        name="numeroPiso"
+                        [(ngModel)]="avance.numeroPiso"
+                        required
+                        maxlength="45"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        />
+                        <div *ngIf="!isValorPositivo(avance.numeroPiso)" class="text-red-500 text-sm">
+                        El número de piso no debe ser negativo.
+                        </div>
+                    </div>
+                    <!-- Cantidad Comprada -->
+                    <div>
+                        <label for="cantidadComprada" class="block text-sm font-medium text-gray-700">Cantidad Comprada</label>
+                        <input
+                        type="text"
+                        id="cantidadComprada"
+                        name="cantidadComprada"
+                        [(ngModel)]="avance.cantidadComprada"
+                        required
+                        maxlength="45"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        />
+                        <div *ngIf="!isValorPositivo(avance.cantidadComprada)" class="text-red-500 text-sm">
+                            La cantidad comprada no debe ser negativa.
+                        </div>
+                    </div>
+                    <!-- Costo -->
+                    <div>
+                        <label for="costoInsumos" class="block text-sm font-medium text-gray-700">Costo</label>
+                        <input
+                        type="text"
+                        id="costoInsumos"
+                        name="costoInsumos"
+                        [(ngModel)]="avance.costoInsumos"
+                        required
+                        maxlength="45"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        />
+                        <div *ngIf="!isValorPositivo(avance.costoInsumos)" class="text-red-500 text-sm">
+                        El costo no debe ser negativo.
+                        </div>
+                    </div>
+                    <!-- Fecha Compra -->
+                    <div>
+                        <label for="fechaCompra" class="block text-sm font-medium text-gray-700">Fecha Compra</label>
+                        <input
+                        type="date"
+                        id="fechaCompra"
+                        name="fechaCompra"
+                        [(ngModel)]="avance.fechaCompra"
+                        required
+                        maxlength="45"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        />
+                        <div *ngIf="!isFechaValida(avance.fechaCompra)" class="text-red-500 text-sm">
+                            La fecha debe ser valida.
+                        </div>
+                    </div>
+                    <!-- Cantidad Usada -->
+                    <div>
+                        <label for="cantidadUsada" class="block text-sm font-medium text-gray-700">Cantidad Usada</label>
+                        <input
+                        type="text"
+                        id="cantidadUsada"
+                        name="cantidadUsada"
+                        [(ngModel)]="avance.cantidadUsada"
+                        maxlength="45"
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        />
+                        <div *ngIf="!isValorPositivo(avance.cantidadUsada)" class="text-red-500 text-sm">
+                        La cantidad usada no debe ser negativa.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Action buttons -->
+            <div class="flex justify-end bg-gray-50 p-4">
+                <button (click)="onCancel()" type="button"
+                    class="px-4 py-2 mr-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 focus:ring-2 focus:ring-blue-500">
+                    Cancelar
+                </button>
+                <button (click)="onSave()" type="button"
+                    class="px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:ring-2 focus:ring-red-500">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
